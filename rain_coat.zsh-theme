@@ -122,7 +122,7 @@ __git_status() {
 
     [ -n "${s}" ] && s=" [${s}]";
 
-    echo -n " %Bon%b "
+    echo -n " %B%b "
     echo -n "%{$fg_bold[magenta]%}"
     echo -n "$(git_current_branch)"
     echo -n "%{$reset_color%}"
