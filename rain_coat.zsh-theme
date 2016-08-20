@@ -15,9 +15,9 @@ __NVM_SYMBOL="⬢"
 # If user is root, then pain it in red. Otherwise, just print in yellow.
 __user() {
   if [[ $USER == 'root' ]]; then
-    echo -n "%{$fg_bold[red]%}"
+    echo -n "%{$fg_bold[cyan]%}"
   else
-    echo -n "%{$fg_bold[yellow]%}"
+    echo -n "%{$fg_bold[blue]%}"
   fi
   echo -n "%n"
   echo -n "%{$reset_color%}"
@@ -27,22 +27,16 @@ __user() {
 # If there is an ssh connections, then show user and current machine.
 # If user is not $USER, then show username.
 __host() {
-  if [[ -n $SSH_CONNECTION ]]; then
-    echo -n "$(__user)"
-    echo -n " %Bat%b "
-    echo -n "%{$fg_bold[green]%}%m%{$reset_color%}"
-    echo -n " %Bin%b "
-  elif [[ $LOGNAME != $USER ]] || [[ $USER == 'root' ]]; then
-    echo -n "$(__user)"
-    echo -n " %Bin%b "
-    echo -n "%{$reset_color%}"
-  fi
+  echo -n "$(__user)"
+    echo -n "%{$fg_bold[cyan]%}%B@%b%{$reset_color%}"
+    echo -n "%{$fg_bold[blue]%}%m%{$reset_color%}"
+    echo -n " "
 }
 
 # Current directory.
 # Return only three last items of path
 __current_dir() {
-  echo -n "%{$fg_bold[cyan]%}"
+  echo -n "%{$fg_bold[magenta]%}"
   echo -n "%3~"
   echo    "%{$reset_color%}"
 }
@@ -122,8 +116,8 @@ __git_status() {
 
     [ -n "${s}" ] && s=" [${s}]";
 
-    echo -n " %B%b "
-    echo -n "%{$fg_bold[magenta]%}"
+    echo -n " %{$fg_bold[cyan]%}%B%b "
+    echo -n "%{$fg_bold[yellow]%}"
     echo -n "$(git_current_branch)"
     echo -n "%{$reset_color%}"
     echo -n "%{$fg_bold[red]%}"
